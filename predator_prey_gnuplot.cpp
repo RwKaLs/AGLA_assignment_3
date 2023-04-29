@@ -16,7 +16,7 @@ int main() {
     fprintf(pipe, "%s\n", "set multiplot");
     double delta = T / N;
     fprintf(pipe, "%s %d %s\n", "set xrange [0:", (int) T+5, "]");
-    fprintf(pipe, "%s %d %s\n", "set yrange [0:", (int) (v0 + k0), "]");
+    fprintf(pipe, "%s %d %s\n", "set yrange [0:", (int) max(v0, k0) + 5, "]");
     double i_fill = 0;
     vector<double> t;
     while (i_fill <= T) {
@@ -56,8 +56,6 @@ int main() {
     for (int i = 0; i < N+1; ++i) {
         fprintf(pipe, "%lf %lf\n", t[i], k[i]);
     }
-    fprintf(pipe, "%s\n", "e");
-
     //
     fprintf(pipe, "%s\n", "e");
     fprintf(pipe, "%s\n", "unset multiplot");
